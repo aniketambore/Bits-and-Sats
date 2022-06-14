@@ -21,6 +21,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     _socketMethods.updateRoomListener(context);
+    _socketMethods.updatePlayersStateListener(context);
     super.initState();
   }
 

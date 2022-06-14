@@ -15,6 +15,19 @@ app.use(express.json());
 const DB = "";
 
 // TODO: io connection implementation
+io.on("connection", (socket) => {
+  console.log("[+] Connected !");
+
+  
+  socket.on("createRoom", async ({nickname}) => {
+    console.log(`[+] Accepted nickname is ${nickname}`);
+    // TODO 4: Create Room Socket
+    // TODO 5: Store player in the room
+  });
+
+  // TODO 6: joinRoom method here
+
+});
 
 mongoose
   .connect(DB)

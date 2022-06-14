@@ -3,6 +3,7 @@ import '../widgets/custom_textfield.dart';
 import '../utils/responsive.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/custom_button.dart';
+import '../services/socket_methods.dart';
 
 class CreateRoomScreen extends StatefulWidget {
   static String routeName = '/create-room';
@@ -14,6 +15,7 @@ class CreateRoomScreen extends StatefulWidget {
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
+  final SocketMethods _socketMethods = SocketMethods();
 
   @override
   void dispose() {
@@ -51,7 +53,9 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                 hintText: 'Enter your nickname',
               ),
               SizedBox(height: size.height * 0.045),
-              CustomButton(onTap: () {}, text: 'Create'),
+              CustomButton(
+                  onTap: () => _socketMethods.createRoom(_nameController.text),
+                  text: 'Create'),
             ],
           ),
         ),

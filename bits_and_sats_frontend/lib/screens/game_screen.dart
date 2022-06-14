@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../provider/room_data_provider.dart';
 import '../services/socket_methods.dart';
 import '../components/waiting_lobby.dart';
+import '../components/scoreboard.dart';
 
 class GameScreen extends StatefulWidget {
   static String routeName = '/game-screen';
@@ -27,13 +28,18 @@ class _GameScreenState extends State<GameScreen> {
     // print(Provider.of<RoomDataProvider>(context).player1.nickname);
     // print(Provider.of<RoomDataProvider>(context).player2.nickname);
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
+
     return Scaffold(
       body: roomDataProvider.roomData["isJoin"]
           ? const WaitingLobby()
-          : Center(
-              child: Text(
-                  Provider.of<RoomDataProvider>(context).roomData.toString()),
-            ),
+          : SafeArea(
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Scoreboard(),
+                // TODO: TicTacToe Board UI
+              ],
+            )),
     );
   }
 }

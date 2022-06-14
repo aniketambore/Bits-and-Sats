@@ -48,7 +48,43 @@ io.on("connection", (socket) => {
 
   });
 
-  // TODO 6: joinRoom method here
+  socket.on("joinRoom", async ({ nickname, roomId }) => {
+
+    try {
+      // Checking if roomId is a proper mongoose id or not.
+      if (!roomId.match(/^[0-9a-fA-F]{24}$/)) {
+        socket.emit("errorOccurred", "Please enter a valid room ID.");
+        return;
+      }
+
+      let room = await Room.findById(roomId);
+
+      if (room.isJoin) {
+        let player = {
+          nickname,
+          socketID: socket.id,
+          playerType: "O",
+        };
+        socket.join(roomId);
+        room.players.push(player);
+        room.isJoin = false;
+        room = await room.save();
+        io.to(roomId).emit("joinRoomSuccess", room);
+        io.to(roomId).emit("updatePlayers", room.players);
+        // TODO: Emit room
+      } else {
+        socket.emit(
+          "errorOccurred",
+          "The game is in progress, please try again later."
+        );
+      }
+    } catch (e) {
+      console.log(`[!] Error is ${e}`);
+    }
+
+  });
+
+  // TODO: "tap" socket
 
 });
 

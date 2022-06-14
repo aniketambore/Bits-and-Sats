@@ -14,6 +14,8 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
+    print(Provider.of<RoomDataProvider>(context).player1.nickname);
+    print(Provider.of<RoomDataProvider>(context).player2.nickname);
     return Scaffold(
       body: Center(
         child: Text(Provider.of<RoomDataProvider>(context).roomData.toString()),

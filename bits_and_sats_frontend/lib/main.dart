@@ -3,6 +3,7 @@ import 'utils/colors.dart';
 import 'screens/main_menu_screen.dart';
 import 'screens/join_room_screen.dart';
 import 'screens/create_room_screen.dart';
+import 'screens/game_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         MainMenuScreen.routeName: (context) => const MainMenuScreen(),
         JoinRoomScreen.routeName: (context) => const JoinRoomScreen(),
         CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
+        GameScreen.routeName: (context) => const GameScreen(),
       },
       initialRoute: MainMenuScreen.routeName,
     );

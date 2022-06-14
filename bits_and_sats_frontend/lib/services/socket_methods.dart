@@ -6,6 +6,7 @@ import "socket_client.dart";
 import "../screens/game_screen.dart";
 import "../provider/room_data_provider.dart";
 import "../utils/utils.dart";
+import 'game_methods.dart';
 
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;
@@ -92,6 +93,7 @@ class SocketMethods {
       roomDataProvider.updateRoomData(data['room']);
 
       // TODO: check winnner
+      GameMethods().checkWinner(context, _socketClient);
     });
   }
 }

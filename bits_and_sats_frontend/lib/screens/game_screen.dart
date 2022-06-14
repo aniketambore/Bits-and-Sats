@@ -5,6 +5,7 @@ import '../provider/room_data_provider.dart';
 import '../services/socket_methods.dart';
 import '../components/waiting_lobby.dart';
 import '../components/scoreboard.dart';
+import '../components/bitsandsats_board.dart';
 
 class GameScreen extends StatefulWidget {
   static String routeName = '/game-screen';
@@ -38,6 +39,7 @@ class _GameScreenState extends State<GameScreen> {
               children: const [
                 Scoreboard(),
                 // TODO: TicTacToe Board UI
+                BitsAndSatsBoard(),
               ],
             )),
     );

@@ -71,7 +71,7 @@ io.on("connection", (socket) => {
         room = await room.save();
         io.to(roomId).emit("joinRoomSuccess", room);
         io.to(roomId).emit("updatePlayers", room.players);
-        // TODO: Emit room
+        io.to(roomId).emit("updateRoom", room);
       } else {
         socket.emit(
           "errorOccurred",

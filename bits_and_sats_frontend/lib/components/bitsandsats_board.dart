@@ -56,7 +56,7 @@ class _BitsAndSatsBoardState extends State<BitsAndSatsBoard> {
                 ),
                 child: Center(
                   child: AnimatedSize(
-                    duration: Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                     child: AnimatedSize(
                       duration: const Duration(milliseconds: 200),
                       child: Text(

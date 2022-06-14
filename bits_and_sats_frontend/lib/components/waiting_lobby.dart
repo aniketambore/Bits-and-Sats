@@ -39,6 +39,7 @@ class _WaitingLobbyState extends State<WaitingLobby> {
           controller: roomIdController,
           hintText: "",
           isReadOnly: true,
+          icon: Icons.indeterminate_check_box_rounded,
         ),
       ],
     );

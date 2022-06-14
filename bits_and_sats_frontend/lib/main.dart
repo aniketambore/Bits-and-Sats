@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
       create: (context) => RoomDataProvider(),
       child: MaterialApp(
         title: "Bits and Sats",
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: bgColor,
-        ),
+        theme: ThemeData(
+            fontFamily: 'Montserrat',
+            primarySwatch: Colors.indigo,
+            primaryColor: persianBlue),
         routes: {
           MainMenuScreen.routeName: (context) => const MainMenuScreen(),
           JoinRoomScreen.routeName: (context) => const JoinRoomScreen(),

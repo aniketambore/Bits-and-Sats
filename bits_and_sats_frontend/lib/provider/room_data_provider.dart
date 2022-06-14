@@ -16,7 +16,7 @@ class RoomDataProvider extends ChangeNotifier {
     points: 0,
     playerType: "O",
   );
-  List<String> _displayElement = ["", "", "", "", "", "", "", "", ""];
+  final List<String> _displayElement = ["", "", "", "", "", "", "", "", ""];
   int _filledBoxes = 0;
 
   Map<String, dynamic> get roomData => _roomData;

@@ -1,4 +1,3 @@
-import "package:bits_and_sats_frontend/screens/main_menu_screen.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "package:socket_io_client/socket_io_client.dart";

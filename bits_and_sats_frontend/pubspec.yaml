@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   socket_io_client: ^1.0.2
   provider: ^6.0.3
+  flutter_svg: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +25,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Bold.ttf
+        - asset: assets/fonts/Montserrat-ExtraBold.ttf
+        - asset: assets/fonts/Montserrat-Medium.ttf
+  assets:
+    - assets/icons/

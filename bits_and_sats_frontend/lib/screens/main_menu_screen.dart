@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/responsive.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/button_plain_with_icon.dart';
+import '../widgets/contra_text.dart';
 import 'create_room_screen.dart';
 import 'join_room_screen.dart';
+import '../utils/colors.dart';
 
 class MainMenuScreen extends StatelessWidget {
   static String routeName = '/main-menu';
@@ -19,21 +22,119 @@ class MainMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Responsive(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomButton(
-              onTap: () => createRoom(context),
-              text: 'Create Room',
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+            color: lighteningYellow,
+            alignment: Alignment.center,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Flexible(
+                  child: SvgPicture.asset(
+                    "assets/icons/bitcoin.svg",
+                    width: 370,
+                    height: 590,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            CustomButton(
-              onTap: () => joinRoom(context),
-              text: 'Join Room',
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Flexible(
+                  child: SvgPicture.asset(
+                    "assets/icons/lightning.svg",
+                    width: 370,
+                    height: 590,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Responsive(
+            child: Container(
+              height: 410,
+              alignment: Alignment.bottomCenter,
+              margin: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16), color: white),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Column(
+                    children: const [
+                      ContraText(
+                        text: "Bits and Sats",
+                        alignment: Alignment.center,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Play your faviorite game Tic-Tac-Toe with your friend for sats!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: trout,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ButtonPlainWithIcon(
+                        color: woodSmoke,
+                        textColor: white,
+                        iconPath: Icons.room_preferences_outlined,
+                        isPrefix: true,
+                        isSuffix: false,
+                        text: "Create Room",
+                        callback: () => createRoom(context),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ButtonPlainWithIcon(
+                        color: persianBlue,
+                        textColor: white,
+                        iconPath: Icons.meeting_room_sharp,
+                        isPrefix: true,
+                        isSuffix: false,
+                        text: "Join Room",
+                        callback: () => joinRoom(context),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ButtonPlainWithIcon(
+                        color: carribeanGreen,
+                        textColor: white,
+                        iconPath: Icons.integration_instructions,
+                        isPrefix: true,
+                        isSuffix: false,
+                        text: "Instruction",
+                        callback: () {},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

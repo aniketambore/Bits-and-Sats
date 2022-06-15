@@ -1,3 +1,4 @@
+import 'package:bits_and_sats_frontend/screens/nowallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'utils/colors.dart';
@@ -6,6 +7,7 @@ import 'screens/join_room_screen.dart';
 import 'screens/create_room_screen.dart';
 import 'screens/game_screen.dart';
 import 'provider/room_data_provider.dart';
+import 'screens/landing_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +18,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => RoomDataProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => RoomDataProvider(),
+        ),
+      ],
+      // create: (context) => RoomDataProvider(),
       child: MaterialApp(
         title: "Bits and Sats",
         theme: ThemeData(
@@ -25,12 +32,15 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.indigo,
             primaryColor: persianBlue),
         routes: {
-          MainMenuScreen.routeName: (context) => const MainMenuScreen(),
+          LandingScreen.routeName: (context) => const LandingScreen(),
+          // NoWalletScreen.routeName: (context) => const NoWalletScreen(),
+          // MainMenuScreen.routeName: (context) => const MainMenuScreen(),
           JoinRoomScreen.routeName: (context) => const JoinRoomScreen(),
           CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
           GameScreen.routeName: (context) => const GameScreen(),
         },
-        initialRoute: MainMenuScreen.routeName,
+        // initialRoute: MainMenuScreen.routeName,
+        initialRoute: LandingScreen.routeName,
       ),
     );
   }

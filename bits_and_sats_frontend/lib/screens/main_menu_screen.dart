@@ -8,7 +8,7 @@ import '../utils/colors.dart';
 import '../widgets/custom_image.dart';
 
 class MainMenuScreen extends StatelessWidget {
-  static String routeName = '/main-menu';
+  // static String routeName = '/main-menu';
   const MainMenuScreen({Key? key}) : super(key: key);
 
   void createRoom(BuildContext context) {

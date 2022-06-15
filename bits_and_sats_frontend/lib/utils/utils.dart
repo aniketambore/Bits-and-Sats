@@ -1,6 +1,6 @@
+import 'package:bits_and_sats_frontend/screens/landing_screen.dart';
 import 'package:flutter/material.dart';
 import '../services/game_methods.dart';
-import '../screens/main_menu_screen.dart';
 
 void showSnackBar(BuildContext context, String content) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -28,7 +28,7 @@ void showGameDialog(BuildContext context, String text, [String? methodName]) {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MainMenuScreen()),
+                          builder: (context) => const LandingScreen()),
                       (route) => false);
                 }
               },

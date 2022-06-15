@@ -48,7 +48,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
             const CustomImage(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
-                assetPath: "assets/icons/lightning.svg"),
+                assetPath: "assets/icons/bitcoin.svg"),
             Responsive(
               child: Container(
                 height: 410,

@@ -1,8 +1,6 @@
-import 'package:bits_and_sats_frontend/screens/nowallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'utils/colors.dart';
-import 'screens/main_menu_screen.dart';
 import 'screens/join_room_screen.dart';
 import 'screens/create_room_screen.dart';
 import 'screens/game_screen.dart';
@@ -24,7 +22,6 @@ class MyApp extends StatelessWidget {
           create: (context) => RoomDataProvider(),
         ),
       ],
-      // create: (context) => RoomDataProvider(),
       child: MaterialApp(
         title: "Bits and Sats",
         theme: ThemeData(

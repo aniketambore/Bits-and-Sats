@@ -3,10 +3,11 @@ library webln_connection;
 
 import 'dart:convert';
 
+import 'package:js/js.dart';
+
 import 'package:bits_and_sats_frontend/models/payment_response.dart';
 import 'package:bits_and_sats_frontend/provider/webln_provider.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:js/js.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // A reference to window.webln;

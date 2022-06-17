@@ -1,4 +1,3 @@
-import 'package:bits_and_sats_frontend/components/circular_progress.dart';
 import 'package:bits_and_sats_frontend/screens/main_menu_screen.dart';
 import 'package:flutter/material.dart';
 import '../services/webln_methods.dart';
@@ -21,7 +20,6 @@ class _LandingScreenState extends State<LandingScreen> {
       future: _weblnMethods.checkWebln(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          print("From LandingPage SnapshotkaData is ${snapshot.data}");
           if (snapshot.data != null) {
             return const MainMenuScreen();
           } else {
@@ -29,7 +27,7 @@ class _LandingScreenState extends State<LandingScreen> {
           }
         } else {
           return const Center(
-            child: CircularProgress(),
+            child: CircularProgressIndicator(),
           );
         }
       },

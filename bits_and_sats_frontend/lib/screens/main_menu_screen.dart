@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/webln_methods.dart';
 import '../utils/responsive.dart';
 import '../widgets/button_plain_with_icon.dart';
 import '../widgets/contra_text.dart';
@@ -7,9 +8,16 @@ import 'join_room_screen.dart';
 import '../utils/colors.dart';
 import '../widgets/custom_image.dart';
 
-class MainMenuScreen extends StatelessWidget {
+class MainMenuScreen extends StatefulWidget {
   // static String routeName = '/main-menu';
   const MainMenuScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainMenuScreen> createState() => _MainMenuScreenState();
+}
+
+class _MainMenuScreenState extends State<MainMenuScreen> {
+  final WeblnMethods _weblnMethods = WeblnMethods();
 
   void createRoom(BuildContext context) {
     Navigator.pushNamed(context, CreateRoomScreen.routeName);
@@ -17,6 +25,12 @@ class MainMenuScreen extends StatelessWidget {
 
   void joinRoom(BuildContext context) {
     Navigator.pushNamed(context, JoinRoomScreen.routeName);
+  }
+
+  @override
+  void initState() {
+    _weblnMethods.enablingWebln();
+    super.initState();
   }
 
   @override

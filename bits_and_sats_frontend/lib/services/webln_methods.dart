@@ -23,6 +23,10 @@ class WeblnMethods {
     return checkWebln;
   }
 
+  void enablingWebln() async {
+    await webln.enable();
+  }
+
   void sendPayment(BuildContext context,
       {required String invoice,
       required void Function(String paymentHash) checkPaidInvoice}) async {
@@ -38,27 +42,16 @@ class WeblnMethods {
         "[+] _checkWebln | webln_methods.dart | weblnValue is ${stringify(weblnValue)}");
     final Map<String, dynamic> json = jsonDecode(stringify(weblnValue));
     if (json.isNotEmpty) {
-      _enablingWebln();
       return json;
     } else {
       return {};
     }
   }
 
-  void _enablingWebln() {
-    Future.delayed(
-        const Duration(
-          seconds: 2,
-        ), () async {
-      await webln.enable();
-    });
-  }
-
   void _sendPayment(BuildContext context,
       {required String invoice,
       required void Function(String paymentHash) checkPaidInvoice}) async {
     // await webln.enable();
-    // _enablingWebln();
     var sendPaymentResult = await webln.sendPayment(invoice);
     sendPaymentResult.then((value) {
       final Map<String, dynamic> json = jsonDecode(stringify(value));

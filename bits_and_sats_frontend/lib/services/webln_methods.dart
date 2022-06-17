@@ -23,14 +23,15 @@ class WeblnMethods {
     return checkWebln;
   }
 
-  // void sendPayment(BuildContext context,
-  //     {required String invoice,
-  //     required void Function(String paymentHash) checkPaidInvoice}) async {
-  //   return _sendPayment(context,
-  //       invoice: invoice, checkPaidInvoice: checkPaidInvoice);
-  // }
+  void sendPayment(BuildContext context,
+      {required String invoice,
+      required void Function(String paymentHash) checkPaidInvoice}) async {
+    return _sendPayment(context,
+        invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+  }
 
   Future<Map<String, dynamic>> _checkWebln() async {
+    //// Below code throws error on production, works fine with localhost
     // await webln.enable();
     final weblnValue = await webln;
     print(
@@ -43,19 +44,19 @@ class WeblnMethods {
     }
   }
 
-  // void _sendPayment(BuildContext context,
-  //     {required String invoice,
-  //     required void Function(String paymentHash) checkPaidInvoice}) async {
-  //   await webln.enable();
-  //   var sendPaymentResult = await webln.sendPayment(invoice);
-  //   sendPaymentResult.then((value) {
-  //     final Map<String, dynamic> json = jsonDecode(stringify(value));
-  //     print(
-  //         "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
-  //     WeblnProvider weblnProvier =
-  //         Provider.of<WeblnProvider>(context, listen: false);
-  //     weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
-  //     checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
-  //   });
-  // }
+  void _sendPayment(BuildContext context,
+      {required String invoice,
+      required void Function(String paymentHash) checkPaidInvoice}) async {
+    await webln.enable();
+    var sendPaymentResult = await webln.sendPayment(invoice);
+    sendPaymentResult.then((value) {
+      final Map<String, dynamic> json = jsonDecode(stringify(value));
+      print(
+          "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
+      WeblnProvider weblnProvier =
+          Provider.of<WeblnProvider>(context, listen: false);
+      weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
+      checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+    });
+  }
 }

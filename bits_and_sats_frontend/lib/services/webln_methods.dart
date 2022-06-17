@@ -38,7 +38,7 @@ class WeblnMethods {
         "[+] _checkWebln | webln_methods.dart | weblnValue is ${stringify(weblnValue)}");
     final Map<String, dynamic> json = jsonDecode(stringify(weblnValue));
     if (json.isNotEmpty) {
-      await webln.enable();
+      _enablingWebln();
       return json;
     } else {
       return {};

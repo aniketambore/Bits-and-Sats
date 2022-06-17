@@ -21,6 +21,7 @@ class _LandingScreenState extends State<LandingScreen> {
       future: _weblnMethods.checkWebln(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
+          print("From LandingPage SnapshotkaData is ${snapshot.data}");
           if (snapshot.data != null) {
             return const MainMenuScreen();
           } else {

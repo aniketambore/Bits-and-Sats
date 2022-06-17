@@ -28,12 +28,6 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   }
 
   @override
-  void initState() {
-    _weblnMethods.enablingWebln();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(

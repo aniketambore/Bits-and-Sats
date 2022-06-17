@@ -135,8 +135,8 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
 
   void sendPayment(String invoice) async {
     if (_nameController.text.isNotEmpty && _gameIdController.text.isNotEmpty) {
-      _weblnMethods.sendPayment(context,
-          invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+      // _weblnMethods.sendPayment(context,
+      //     invoice: invoice, checkPaidInvoice: checkPaidInvoice);
     }
   }
 

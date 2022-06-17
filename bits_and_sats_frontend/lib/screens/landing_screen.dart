@@ -1,3 +1,4 @@
+import 'package:bits_and_sats_frontend/components/circular_progress.dart';
 import 'package:bits_and_sats_frontend/screens/main_menu_screen.dart';
 import 'package:flutter/material.dart';
 import '../services/webln_methods.dart';
@@ -26,9 +27,8 @@ class _LandingScreenState extends State<LandingScreen> {
             return const NoWalletScreen();
           }
         } else {
-          // 6
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgress(),
           );
         }
       },

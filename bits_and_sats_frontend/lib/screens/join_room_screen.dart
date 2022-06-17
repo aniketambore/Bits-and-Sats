@@ -1,5 +1,7 @@
-import 'package:bits_and_sats_frontend/widgets/button_plain_with_icon.dart';
+import 'package:bits_and_sats_frontend/widgets/pay_invoice_button.dart';
 import 'package:flutter/material.dart';
+import '../api/lnbits_api.dart';
+import '../services/webln_methods.dart';
 import '../utils/colors.dart';
 import '../utils/responsive.dart';
 import '../widgets/contra_text.dart';
@@ -19,6 +21,8 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
   final TextEditingController _gameIdController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();
+  final LNBitsApi _lnBitsApi = LNBitsApi();
+  final WeblnMethods _weblnMethods = WeblnMethods();
 
   @override
   void initState() {
@@ -102,16 +106,21 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                           icon: Icons.indeterminate_check_box_outlined,
                         ),
                         SizedBox(height: size.height * 0.045),
-                        ButtonPlainWithIcon(
-                          color: persianBlue,
-                          textColor: white,
-                          iconPath: Icons.meeting_room_sharp,
-                          isPrefix: true,
-                          isSuffix: false,
-                          text: "Join",
-                          callback: () => _socketMethods.joinRoom(
-                              _nameController.text, _gameIdController.text),
-                        ),
+                        // ButtonPlainWithIcon(
+                        //   color: persianBlue,
+                        //   textColor: white,
+                        //   iconPath: Icons.meeting_room_sharp,
+                        //   isPrefix: true,
+                        //   isSuffix: false,
+                        //   text: "Join",
+                        //   callback: () => _socketMethods.joinRoom(
+                        //       _nameController.text, _gameIdController.text),
+                        // ),
+                        PayInvoiceButton(
+                            bgColor: persianBlue,
+                            textValue: "Join",
+                            iconData: Icons.meeting_room_sharp,
+                            sendPayment: sendPayment)
                       ],
                     ),
                   ],
@@ -122,5 +131,24 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
         ),
       ),
     );
+  }
+
+  void sendPayment(String invoice) async {
+    if (_nameController.text.isNotEmpty && _gameIdController.text.isNotEmpty) {
+      _weblnMethods.sendPayment(context,
+          invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+    }
+  }
+
+  void checkPaidInvoice(String paymentHash) {
+    // Future<Map<String, dynamic>> checkInvoice = _lnBitsApi.checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+    var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
+    checkInvoice.then((value) {
+      print(
+          "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
+      if (value["paid"] == true) {
+        _socketMethods.joinRoom(_nameController.text, _gameIdController.text);
+      }
+    });
   }
 }

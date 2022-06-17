@@ -1,5 +1,7 @@
+import 'package:bits_and_sats_frontend/widgets/pay_invoice_button.dart';
 import 'package:flutter/material.dart';
-import '../widgets/button_plain_with_icon.dart';
+import '../api/lnbits_api.dart';
+import '../services/webln_methods.dart';
 import '../widgets/custom_textfield.dart';
 import '../utils/responsive.dart';
 import '../services/socket_methods.dart';
@@ -18,6 +20,8 @@ class CreateRoomScreen extends StatefulWidget {
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();
+  final LNBitsApi _lnBitsApi = LNBitsApi();
+  final WeblnMethods _weblnMethods = WeblnMethods();
 
   @override
   void initState() {
@@ -92,16 +96,22 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                           icon: Icons.person,
                         ),
                         SizedBox(height: size.height * 0.045),
-                        ButtonPlainWithIcon(
-                          color: woodSmoke,
-                          textColor: white,
-                          iconPath: Icons.room_preferences_outlined,
-                          isPrefix: true,
-                          isSuffix: false,
-                          text: "Create",
-                          callback: () =>
-                              _socketMethods.createRoom(_nameController.text),
-                        ),
+                        // ButtonPlainWithIcon(
+                        //   color: woodSmoke,
+                        //   textColor: white,
+                        //   iconPath: Icons.room_preferences_outlined,
+                        //   isPrefix: true,
+                        //   isSuffix: false,
+                        //   text: "Create",
+                        //   callback: () =>
+                        //       _socketMethods.createRoom(_nameController.text),
+                        // ),
+                        PayInvoiceButton(
+                          bgColor: woodSmoke,
+                          textValue: "Create",
+                          iconData: Icons.room_preferences_outlined,
+                          sendPayment: sendPayment,
+                        )
                       ],
                     ),
                   ],
@@ -112,5 +122,24 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
         ),
       ),
     );
+  }
+
+  void sendPayment(String invoice) async {
+    if (_nameController.text.isNotEmpty) {
+      _weblnMethods.sendPayment(context,
+          invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+    }
+  }
+
+  void checkPaidInvoice(String paymentHash) {
+    // Future<Map<String, dynamic>> checkInvoice = _lnBitsApi.checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+    var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
+    checkInvoice.then((value) {
+      print(
+          "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
+      if (value["paid"] == true) {
+        _socketMethods.createRoom(_nameController.text);
+      }
+    });
   }
 }

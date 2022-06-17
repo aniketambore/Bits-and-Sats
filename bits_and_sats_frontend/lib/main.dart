@@ -1,3 +1,4 @@
+import 'package:bits_and_sats_frontend/provider/webln_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'utils/colors.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => RoomDataProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WeblnProvider(),
         ),
       ],
       child: MaterialApp(

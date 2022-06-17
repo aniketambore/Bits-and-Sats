@@ -17,6 +17,9 @@ external get webln;
 external String stringify(Object obj);
 
 class WeblnMethods {
+  // final LNBitsApi _lnBitsApi = LNBitsApi();
+  // final SocketMethods _socketMethods = SocketMethods();
+
   Future<Map<String, dynamic>> checkWebln() async {
     final checkWebln = await _checkWebln();
     return checkWebln;

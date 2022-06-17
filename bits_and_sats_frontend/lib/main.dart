@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "Bits and Sats",
         theme: ThemeData(
-            fontFamily: 'Montserrat',
+            // fontFamily: 'Montserrat',
             primarySwatch: Colors.indigo,
             primaryColor: persianBlue),
         routes: {

@@ -7,6 +7,7 @@ import '../utils/responsive.dart';
 import '../widgets/contra_text.dart';
 import '../widgets/custom_image.dart';
 import '../widgets/pay_invoice_button.dart';
+import 'join_room_screen.dart';
 
 class DepositSatsScreen extends StatefulWidget {
   static String routeName = '/deposit-screen';
@@ -18,6 +19,14 @@ class DepositSatsScreen extends StatefulWidget {
 
 class _DepositSatsScreenState extends State<DepositSatsScreen> {
   final WeblnMethods _weblnMethods = WeblnMethods();
+
+  void createRoom(BuildContext context) {
+    Navigator.pushNamed(context, CreateRoomScreen.routeName);
+  }
+
+  void joinRoom(BuildContext context) {
+    Navigator.pushNamed(context, JoinRoomScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +73,6 @@ class _DepositSatsScreenState extends State<DepositSatsScreen> {
                                 color: trout,
                                 fontWeight: FontWeight.w500),
                           ),
-                          // SizedBox(
-                          //   height: 16,
-                          // ),
                         ],
                       ),
                       Column(
@@ -91,7 +97,13 @@ class _DepositSatsScreenState extends State<DepositSatsScreen> {
 
   void sendPayment(String invoice) async {
     _weblnMethods.sendPayment(invoice);
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const CreateRoomScreen()));
+
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+    if (arguments["toRoute"] == "createRoom") {
+      createRoom(context);
+    } else if (arguments["toRoute"] == "joinRoom") {
+      joinRoom(context);
+    }
   }
 }

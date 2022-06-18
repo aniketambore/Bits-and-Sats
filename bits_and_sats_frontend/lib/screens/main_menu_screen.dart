@@ -1,6 +1,5 @@
 import 'package:bits_and_sats_frontend/screens/deposit_screen.dart';
 import 'package:flutter/material.dart';
-// import '../services/webln_methods.dart';
 import '../utils/responsive.dart';
 import '../widgets/button_plain_with_icon.dart';
 import '../widgets/contra_text.dart';
@@ -18,15 +17,16 @@ class MainMenuScreen extends StatefulWidget {
 }
 
 class _MainMenuScreenState extends State<MainMenuScreen> {
-  // final WeblnMethods _weblnMethods = WeblnMethods();
-
   void createRoom(BuildContext context) {
     // Navigator.pushNamed(context, CreateRoomScreen.routeName);
-    Navigator.pushNamed(context, DepositSatsScreen.routeName);
+    Navigator.pushNamed(context, DepositSatsScreen.routeName,
+        arguments: {"toRoute": "createRoom"});
   }
 
   void joinRoom(BuildContext context) {
-    Navigator.pushNamed(context, JoinRoomScreen.routeName);
+    // Navigator.pushNamed(context, JoinRoomScreen.routeName);
+    Navigator.pushNamed(context, DepositSatsScreen.routeName,
+        arguments: {"toRoute": "joinRoom"});
   }
 
   @override

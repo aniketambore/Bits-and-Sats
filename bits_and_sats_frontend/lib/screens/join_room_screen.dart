@@ -4,10 +4,12 @@ import '../api/lnbits_api.dart';
 import '../services/webln_methods.dart';
 import '../utils/colors.dart';
 import '../utils/responsive.dart';
+import '../widgets/button_plain_with_icon.dart';
 import '../widgets/contra_text.dart';
 import '../widgets/custom_image.dart';
 import '../widgets/custom_textfield.dart';
 import '../services/socket_methods.dart';
+import 'dart:js' as js;
 
 class JoinRoomScreen extends StatefulWidget {
   static String routeName = '/join-room';
@@ -22,7 +24,7 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();
   final LNBitsApi _lnBitsApi = LNBitsApi();
-  final WeblnMethods _weblnMethods = WeblnMethods();
+  bool invoicePaid = false;
 
   @override
   void initState() {
@@ -70,15 +72,15 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
-                      children: const [
-                        ContraText(
+                      children: [
+                        const ContraText(
                           text: "Join Room",
                           alignment: Alignment.center,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Play your faviorite game Tic-Tac-Toe with your friend for sats!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -86,9 +88,19 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                               color: trout,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          height: 16,
+                        const SizedBox(
+                          height: 5,
                         ),
+                        invoicePaid
+                            ? Container()
+                            : const Text(
+                                "It looks like you've not deposited the sats or else please click the create button again.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    color: flamingo,
+                                    fontWeight: FontWeight.w500),
+                              ),
                       ],
                     ),
                     Column(
@@ -106,21 +118,22 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                           icon: Icons.indeterminate_check_box_outlined,
                         ),
                         SizedBox(height: size.height * 0.045),
-                        // ButtonPlainWithIcon(
-                        //   color: persianBlue,
-                        //   textColor: white,
-                        //   iconPath: Icons.meeting_room_sharp,
-                        //   isPrefix: true,
-                        //   isSuffix: false,
-                        //   text: "Join",
-                        //   callback: () => _socketMethods.joinRoom(
-                        //       _nameController.text, _gameIdController.text),
-                        // ),
-                        PayInvoiceButton(
-                            bgColor: persianBlue,
-                            textValue: "Join",
-                            iconData: Icons.meeting_room_sharp,
-                            sendPayment: sendPayment)
+                        ButtonPlainWithIcon(
+                          color: persianBlue,
+                          textColor: white,
+                          iconPath: Icons.meeting_room_sharp,
+                          isPrefix: true,
+                          isSuffix: false,
+                          text: "Join",
+                          // callback: () => _socketMethods.joinRoom(
+                          //     _nameController.text, _gameIdController.text),
+                          callback: checkPaidInvoice,
+                        ),
+                        // PayInvoiceButton(
+                        //     bgColor: persianBlue,
+                        //     textValue: "Join",
+                        //     iconData: Icons.meeting_room_sharp,
+                        //     sendPayment: sendPayment)
                       ],
                     ),
                   ],
@@ -133,22 +146,41 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
     );
   }
 
-  void sendPayment(String invoice) async {
-    if (_nameController.text.isNotEmpty && _gameIdController.text.isNotEmpty) {
-      // _weblnMethods.sendPaymentMethod(context,
-      //     invoice: invoice, checkPaidInvoice: checkPaidInvoice);
-    }
-  }
-
-  void checkPaidInvoice(String paymentHash) {
-    // Future<Map<String, dynamic>> checkInvoice = _lnBitsApi.checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
-    var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
+  void checkPaidInvoice() {
+    var paymentResult =
+        js.JsObject.fromBrowserObject(js.context['paymentState']);
+    var checkInvoice =
+        _lnBitsApi.checkPaidInvoice(paymentResult["paymentHash"]);
     checkInvoice.then((value) {
       print(
           "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
       if (value["paid"] == true) {
+        setState(() {
+          invoicePaid = true;
+        });
         _socketMethods.joinRoom(_nameController.text, _gameIdController.text);
+      } else {
+        invoicePaid = false;
       }
     });
   }
+
+  // void sendPayment(String invoice) async {
+  //   if (_nameController.text.isNotEmpty && _gameIdController.text.isNotEmpty) {
+  //     // _weblnMethods.sendPaymentMethod(context,
+  //     //     invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+  //   }
+  // }
+
+  // void checkPaidInvoice(String paymentHash) {
+  //   // Future<Map<String, dynamic>> checkInvoice = _lnBitsApi.checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+  //   var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
+  //   checkInvoice.then((value) {
+  //     print(
+  //         "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
+  //     if (value["paid"] == true) {
+  //       _socketMethods.joinRoom(_nameController.text, _gameIdController.text);
+  //     }
+  //   });
+  // }
 }

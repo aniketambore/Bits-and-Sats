@@ -46,7 +46,7 @@ class LNBitsApi {
         "X-Api-Key": _apiKey,
       },
       body: jsonEncode(
-        {"out": false, "amount": 2, "memo": "Bits and Sats", "unit": "sat"},
+        {"out": false, "amount": 5, "memo": "Bits and Sats", "unit": "sat"},
       ),
     );
 

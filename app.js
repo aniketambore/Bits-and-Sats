@@ -14,3 +14,8 @@ function checkWebln() {
 async function enableWebln(){
     await window.webln.enable();
 }
+
+async function sendPaymentFunc(invoice){
+    var result = await window.webln.sendPayment(invoice);
+    return result;
+}

@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "app.js": "bbb464374814e1a0eab741063ad053fe",
+  "app.js": "fde020f477dbdebeef370503c30672a6",
 "assets/AssetManifest.json": "214e4712f42930f3a956eca36baad3a2",
 "assets/assets/fonts/Montserrat-Bold.ttf": "ade91f473255991f410f61857696434b",
 "assets/assets/fonts/Montserrat-ExtraBold.ttf": "19ba7aa52a78c3896558ac1c0a5fb4c7",
@@ -25,9 +25,9 @@ const RESOURCES = {
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "f9fefd53229ffeb287fd72754415552a",
-"/": "f9fefd53229ffeb287fd72754415552a",
-"main.dart.js": "3f6c222bc22511f9f6468ccb93af0910",
+"index.html": "f38f64d38740ac5ff7ad2238ecdec93c",
+"/": "f38f64d38740ac5ff7ad2238ecdec93c",
+"main.dart.js": "a318048ac6f2805b43c6e8cb194f1175",
 "manifest.json": "de6bb903e6dc3b9b2fb6b21cd02530d8",
 "version.json": "e0c41282eb299be852242e6879ca557a"
 };

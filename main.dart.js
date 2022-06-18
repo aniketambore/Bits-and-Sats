@@ -36644,7 +36644,7 @@ a0f(a,b,c){var s=0,r=A.a0(t.z),q=1,p,o=[],n,m,l,k
 var $async$th=A.a1(function(d,e){if(d===1){p=e
 s=q}while(true)switch(s){case 0:q=3
 s=6
-return A.ab(self.webln.sendPayment(c),$async$th)
+return A.ab(self.sendPaymentFunc(c),$async$th)
 case 6:n=e
 J.aso(n,new A.a7R())
 q=1

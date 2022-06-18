@@ -20,9 +20,6 @@ external enable();
 @JS("webln.sendPayment")
 external sendPayment(String invoice);
 
-@JS()
-external sendPaymentFunc(String invoice);
-
 @JS("JSON.stringify")
 external String stringify(Object obj);
 

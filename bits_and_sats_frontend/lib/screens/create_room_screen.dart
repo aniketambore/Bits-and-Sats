@@ -23,7 +23,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();
   final LNBitsApi _lnBitsApi = LNBitsApi();
-  // final WeblnMethods _weblnMethods = WeblnMethods();
+  bool invoicePaid = false;
 
   @override
   void initState() {
@@ -68,15 +68,15 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
-                      children: const [
-                        ContraText(
+                      children: [
+                        const ContraText(
                           text: "Create Room",
                           alignment: Alignment.center,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Play your faviorite game Tic-Tac-Toe with your friend for sats!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -84,9 +84,19 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                               color: trout,
                               fontWeight: FontWeight.w500),
                         ),
-                        SizedBox(
-                          height: 16,
+                        const SizedBox(
+                          height: 5,
                         ),
+                        invoicePaid
+                            ? Container()
+                            : const Text(
+                                "It looks like you've not deposited the sats or else please click the create button again.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    color: flamingo,
+                                    fontWeight: FontWeight.w500),
+                              ),
                       ],
                     ),
                     Column(
@@ -105,16 +115,8 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                           isPrefix: true,
                           isSuffix: false,
                           text: "Create",
-                          // callback: () =>
-                          //     _socketMethods.createRoom(_nameController.text),
                           callback: checkPaidInvoice,
                         ),
-                        // PayInvoiceButton(
-                        //   bgColor: woodSmoke,
-                        //   textValue: "Create",
-                        //   iconData: Icons.room_preferences_outlined,
-                        //   sendPayment: sendPayment,
-                        // )
                       ],
                     ),
                   ],
@@ -136,7 +138,12 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       print(
           "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
       if (value["paid"] == true) {
-        // _socketMethods.createRoom(_nameController.text);
+        setState(() {
+          invoicePaid = true;
+        });
+        _socketMethods.createRoom(_nameController.text);
+      } else {
+        invoicePaid = false;
       }
     });
   }

@@ -9,3 +9,4 @@ const trout = Color(0xFF474A57);
 const woodSmoke = Color(0xFF18191F);
 const carribeanGreen = Color(0xFF00C6AE);
 const santasGray = Color(0xFF969BAB);
+const flamingo = Color(0xFFF95A2C);

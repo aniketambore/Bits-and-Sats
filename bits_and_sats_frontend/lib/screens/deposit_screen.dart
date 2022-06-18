@@ -64,30 +64,14 @@ class _DepositSatsScreenState extends State<DepositSatsScreen> {
                                 color: trout,
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
-                            height: 16,
-                          ),
+                          // SizedBox(
+                          //   height: 16,
+                          // ),
                         ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          // CustomTextField(
-                          //   controller: _nameController,
-                          //   hintText: 'Enter your nickname',
-                          //   icon: Icons.person,
-                          // ),
-                          // SizedBox(height: size.height * 0.045),
-                          // ButtonPlainWithIcon(
-                          //   color: woodSmoke,
-                          //   textColor: white,
-                          //   iconPath: Icons.room_preferences_outlined,
-                          //   isPrefix: true,
-                          //   isSuffix: false,
-                          //   text: "Create",
-                          //   callback: () =>
-                          //       _socketMethods.createRoom(_nameController.text),
-                          // ),
                           PayInvoiceButton(
                             bgColor: woodSmoke,
                             textValue: "Deposit",

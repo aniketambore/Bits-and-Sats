@@ -10,8 +10,6 @@ import 'package:provider/provider.dart';
 // import 'dart:js' as js;
 import 'package:js/js.dart';
 
-import 'dart:js' as js;
-
 // A reference to window.webln;
 @JS()
 external get webln;

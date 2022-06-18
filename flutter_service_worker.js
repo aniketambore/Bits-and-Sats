@@ -4,13 +4,15 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "app.js": "cd646fa26563f548db863eabb0c8e3e2",
-"assets/AssetManifest.json": "214e4712f42930f3a956eca36baad3a2",
+"assets/AssetManifest.json": "8f825cca35a8c020c674a7f30ea5f1c9",
 "assets/assets/fonts/Montserrat-Bold.ttf": "ade91f473255991f410f61857696434b",
 "assets/assets/fonts/Montserrat-ExtraBold.ttf": "19ba7aa52a78c3896558ac1c0a5fb4c7",
 "assets/assets/fonts/Montserrat-Medium.ttf": "c8b6e083af3f94009801989c3739425e",
 "assets/assets/icons/bitcoin.svg": "10c138d2b7346b9989bcfc307cc93952",
 "assets/assets/icons/lightning.svg": "27f82b398cdae2d23799f6776f5d7c9a",
+"assets/assets/images/lossing.gif": "3fa8fa16e6ac28ff9eef40502d73ca6d",
 "assets/assets/images/no.gif": "d0128ce8ac79ed1b6cd844948e8b57da",
+"assets/assets/images/winning.gif": "473da2a9bab473f1914c4db7d618adac",
 "assets/FontManifest.json": "d4e947c45a9ad5044acf64924a445a13",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/NOTICES": "e4b6539095478801235d1643ed2afade",
@@ -25,9 +27,9 @@ const RESOURCES = {
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "72771e0b7da1dace0adab817bc3ca8c8",
-"/": "72771e0b7da1dace0adab817bc3ca8c8",
-"main.dart.js": "1111f8406bdb9d4e5ce3edbe311a2ad8",
+"index.html": "c01ccfb33beb4af6d5f0fcfa05676848",
+"/": "c01ccfb33beb4af6d5f0fcfa05676848",
+"main.dart.js": "37475db4e76cdf40cbc380755947c059",
 "manifest.json": "de6bb903e6dc3b9b2fb6b21cd02530d8",
 "version.json": "e0c41282eb299be852242e6879ca557a"
 };

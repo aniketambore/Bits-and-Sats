@@ -104,7 +104,8 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                       children: [
                         CustomTextField(
                           controller: _nameController,
-                          hintText: 'Enter your nickname',
+                          labelText: "Wallet Address",
+                          hintText: "aniketambore@getalby.com",
                           icon: Icons.person,
                         ),
                         SizedBox(height: size.height * 0.045),

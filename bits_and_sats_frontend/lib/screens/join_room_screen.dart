@@ -108,12 +108,14 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                       children: [
                         CustomTextField(
                           controller: _nameController,
-                          hintText: 'Enter your nickname',
+                          labelText: "Wallet Adderss",
+                          hintText: "aniketambore@getalby.com",
                           icon: Icons.person,
                         ),
                         const SizedBox(height: 16),
                         CustomTextField(
                           controller: _gameIdController,
+                          labelText: "Game ID",
                           hintText: 'Enter your Game ID',
                           icon: Icons.indeterminate_check_box_outlined,
                         ),

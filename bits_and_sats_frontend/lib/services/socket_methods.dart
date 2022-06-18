@@ -111,8 +111,23 @@ class SocketMethods {
 
   void endGameListener(BuildContext context) {
     _socketClient.on("endGame", (playerData) {
-      showGameDialog(
-          context, "${playerData["nickname"]} won the game!", "endGame");
+      // showGameDialog(context, "${playerData["nickname"]} won the game!", "endGame");
+
+      if (playerData["socketID"] == _socketClient.id) {
+        // showGameDialog(context, "You won the game!", "endGame");
+        showGameDialogWinner(
+            context,
+            "You won the game !",
+            "Your winning amount of sats will be transferred to you soon.",
+            "assets/images/winning.gif");
+      } else {
+        // showGameDialog(context, "${playerData["nickname"]} won the game!", "endGame");
+        showGameDialogWinner(
+            context,
+            "You lost the game bro !",
+            "Play hard and earn sats, next time 🙃",
+            "assets/images/lossing.gif");
+      }
 
       // Navigator.popUntil(context, (route) => false);
     });

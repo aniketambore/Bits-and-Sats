@@ -109,6 +109,7 @@ class _WaitingLobbyState extends State<WaitingLobby> {
                   children: [
                     CustomTextField(
                       controller: roomIdController,
+                      labelText: "",
                       hintText: "",
                       isReadOnly: true,
                       icon: Icons.keyboard_command_key_sharp,

@@ -11,6 +11,11 @@ class Scoreboard extends StatelessWidget {
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
 
+    String splitToNickname(String walletAddress) {
+      var nickname = walletAddress.split("@");
+      return nickname[0];
+    }
+
     return Responsive(
       child: Container(
         margin: const EdgeInsets.only(left: 18, right: 18),
@@ -25,7 +30,8 @@ class Scoreboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    roomDataProvider.player1.nickname,
+                    // roomDataProvider.player1.nickname,
+                    splitToNickname(roomDataProvider.player1.nickname),
                     style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -44,7 +50,8 @@ class Scoreboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    roomDataProvider.player2.nickname,
+                    // roomDataProvider.player2.nickname,
+                    splitToNickname(roomDataProvider.player2.nickname),
                     style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

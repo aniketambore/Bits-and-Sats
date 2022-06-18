@@ -2,12 +2,14 @@ import 'package:bits_and_sats_frontend/widgets/pay_invoice_button.dart';
 import 'package:flutter/material.dart';
 import '../api/lnbits_api.dart';
 import '../services/webln_methods.dart';
+import '../widgets/button_plain_with_icon.dart';
 import '../widgets/custom_textfield.dart';
 import '../utils/responsive.dart';
 import '../services/socket_methods.dart';
 import '../utils/colors.dart';
 import '../widgets/contra_text.dart';
 import '../widgets/custom_image.dart';
+import 'dart:js' as js;
 
 class CreateRoomScreen extends StatefulWidget {
   static String routeName = '/create-room';
@@ -21,7 +23,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();
   final LNBitsApi _lnBitsApi = LNBitsApi();
-  final WeblnMethods _weblnMethods = WeblnMethods();
+  // final WeblnMethods _weblnMethods = WeblnMethods();
 
   @override
   void initState() {
@@ -96,22 +98,23 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                           icon: Icons.person,
                         ),
                         SizedBox(height: size.height * 0.045),
-                        // ButtonPlainWithIcon(
-                        //   color: woodSmoke,
-                        //   textColor: white,
-                        //   iconPath: Icons.room_preferences_outlined,
-                        //   isPrefix: true,
-                        //   isSuffix: false,
-                        //   text: "Create",
-                        //   callback: () =>
-                        //       _socketMethods.createRoom(_nameController.text),
-                        // ),
-                        PayInvoiceButton(
-                          bgColor: woodSmoke,
-                          textValue: "Create",
-                          iconData: Icons.room_preferences_outlined,
-                          sendPayment: sendPayment,
-                        )
+                        ButtonPlainWithIcon(
+                          color: woodSmoke,
+                          textColor: white,
+                          iconPath: Icons.room_preferences_outlined,
+                          isPrefix: true,
+                          isSuffix: false,
+                          text: "Create",
+                          // callback: () =>
+                          //     _socketMethods.createRoom(_nameController.text),
+                          callback: checkPaidInvoice,
+                        ),
+                        // PayInvoiceButton(
+                        //   bgColor: woodSmoke,
+                        //   textValue: "Create",
+                        //   iconData: Icons.room_preferences_outlined,
+                        //   sendPayment: sendPayment,
+                        // )
                       ],
                     ),
                   ],
@@ -124,25 +127,37 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     );
   }
 
-  void sendPayment(String invoice) async {
-    if (_nameController.text.isNotEmpty) {
-      _weblnMethods.sendPaymentMethod(context,
-          invoice: invoice, checkPaidInvoice: checkPaidInvoice);
-      // _weblnMethods.sendPayment(context, invoice);
-
-    }
-    setState(() {});
-  }
-
-  void checkPaidInvoice(String paymentHash) async {
-    // Future<Map<String, dynamic>> checkInvoice = _lnBitsApi.checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
-    // var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
-    await _lnBitsApi.checkPaidInvoice(paymentHash).then((value) {
+  void checkPaidInvoice() {
+    var paymentResult =
+        js.JsObject.fromBrowserObject(js.context['paymentState']);
+    var checkInvoice =
+        _lnBitsApi.checkPaidInvoice(paymentResult["paymentHash"]);
+    checkInvoice.then((value) {
       print(
           "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
       if (value["paid"] == true) {
-        _socketMethods.createRoom(_nameController.text);
+        // _socketMethods.createRoom(_nameController.text);
       }
     });
   }
+
+  // void sendPayment(String invoice) async {
+  //   if (_nameController.text.isNotEmpty) {
+  //     // _weblnMethods.sendPaymentMethod(context,
+  //     //     invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+
+  //   }
+  // }
+
+  // void checkPaidInvoice(String paymentHash) async {
+  //   // Future<Map<String, dynamic>> checkInvoice = _lnBitsApi.checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+  //   var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
+  // checkInvoice.then((value) {
+  //   print(
+  //       "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
+  //   if (value["paid"] == true) {
+  //     _socketMethods.createRoom(_nameController.text);
+  //   }
+  // });
+  // }
 }

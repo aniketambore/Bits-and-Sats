@@ -1,3 +1,4 @@
+import 'package:bits_and_sats_frontend/screens/deposit_screen.dart';
 import 'package:flutter/material.dart';
 // import '../services/webln_methods.dart';
 import '../utils/responsive.dart';
@@ -20,7 +21,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   // final WeblnMethods _weblnMethods = WeblnMethods();
 
   void createRoom(BuildContext context) {
-    Navigator.pushNamed(context, CreateRoomScreen.routeName);
+    // Navigator.pushNamed(context, CreateRoomScreen.routeName);
+    Navigator.pushNamed(context, DepositSatsScreen.routeName);
   }
 
   void joinRoom(BuildContext context) {

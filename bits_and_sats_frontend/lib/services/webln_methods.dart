@@ -5,7 +5,6 @@ import 'dart:convert';
 
 import 'package:bits_and_sats_frontend/models/payment_response.dart';
 import 'package:bits_and_sats_frontend/provider/webln_provider.dart';
-import 'package:bits_and_sats_frontend/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'dart:js' as js;
@@ -20,11 +19,11 @@ external get webln;
 @JS("webln.enable")
 external enable();
 
-@JS("webln.sendPayment")
-external sendPayment(String invoice);
+// @JS("webln.sendPayment")
+// external sendPayment(String invoice);
 
-// @JS()
-// external sendPaymentFunction(String invoice);
+@JS()
+external sendPaymentFunction(String invoice);
 
 @JS("JSON.stringify")
 external String stringify(Object obj);
@@ -41,12 +40,12 @@ class WeblnMethods {
   //   return checkWebln;
   // }
 
-  void sendPaymentMethod(BuildContext context,
-      {required String invoice,
-      required void Function(String paymentHash) checkPaidInvoice}) async {
-    return _sendPaymentMethod(context,
-        invoice: invoice, checkPaidInvoice: checkPaidInvoice);
-  }
+  // void sendPaymentMethod(BuildContext context,
+  //     {required String invoice,
+  //     required void Function(String paymentHash) checkPaidInvoice}) async {
+  //   return _sendPaymentMethod(context,
+  //       invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+  // }
 
   Future<Map<String, dynamic>> _checkWebln() async {
     // Below code throws error on production, works fine with localhost
@@ -71,34 +70,23 @@ class WeblnMethods {
   //   return state["isWebln"];
   // }
 
-  void _sendPaymentMethod(BuildContext context,
-      {required String invoice,
-      required void Function(String paymentHash) checkPaidInvoice}) async {
-    // await webln.enable();
-    // var sendPaymentResult = await sendPayment(invoice);
-    await sendPayment(invoice).then((value) async {
-      final Map<String, dynamic> json = jsonDecode(stringify(value));
-      print(
-          "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
-      WeblnProvider weblnProvier =
-          Provider.of<WeblnProvider>(context, listen: false);
-      weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
-      checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
-    });
+  // void _sendPaymentMethod(BuildContext context,
+  //     {required String invoice,
+  //     required void Function(String paymentHash) checkPaidInvoice}) async {
+  //   // await webln.enable();
+  //   // var sendPaymentResult = await sendPayment(invoice);
+  //   await sendPayment(invoice).then((value) async {
+  //     final Map<String, dynamic> json = jsonDecode(stringify(value));
+  //     print(
+  //         "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
+  //     WeblnProvider weblnProvier =
+  //         Provider.of<WeblnProvider>(context, listen: false);
+  //     weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
+  //     checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+  //   });
+  // }
+
+  void sendPayment(String invoice) {
+    sendPaymentFunction(invoice);
   }
-
-  // void sendPayment(BuildContext context, String invoice) {
-  //   sendPaymentFunction(invoice);
-  //   Navigator.push<void>(
-  //       context,
-  //       MaterialPageRoute<void>(
-  //           builder: (context) => const PaymentResultScreen()));
-  // }
-
-  // Stream<PaymentResponse> paymentResponseResult() {
-  //   Map<String, dynamic> res =
-  //       js.JsObject.fromBrowserObject(js.context['paymentState'])
-  //           as Map<String, dynamic>;
-  //   return PaymentResponse.fromMap(res) as Stream<PaymentResponse>;
-  // }
 }

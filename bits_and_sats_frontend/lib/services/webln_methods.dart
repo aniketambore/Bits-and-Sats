@@ -20,6 +20,9 @@ external enable();
 @JS("webln.sendPayment")
 external sendPayment(String invoice);
 
+@JS()
+external sendPaymentFunc(String invoice);
+
 @JS("JSON.stringify")
 external String stringify(Object obj);
 
@@ -75,7 +78,8 @@ class WeblnMethods {
     // await webln.enable();
     // var sendPaymentResult = await webln.sendPayment(invoice);
     try {
-      var result = await sendPayment(invoice);
+      // var result = await sendPayment(invoice);
+      var result = await sendPaymentFunc(invoice);
       result.then((paymentResult) {
         print("[+] Send payment result is ${stringify(paymentResult)}");
       });

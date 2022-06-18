@@ -13,35 +13,35 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   final WeblnMethods _weblnMethods = WeblnMethods();
-  late bool _isWebln;
+  // late bool _isWebln;
 
-  @override
-  void initState() {
-    _isWebln = _weblnMethods.checkWebln();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   _isWebln = _weblnMethods.checkWebln();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    if (_isWebln) {
-      return MainMenuScreen();
-    }
-    return NoWalletScreen();
-    // return FutureBuilder(
-    //   future: _weblnMethods.checkWebln(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.done) {
-    //       if (snapshot.data != null) {
-    //         return const MainMenuScreen();
-    //       } else {
-    //         return const NoWalletScreen();
-    //       }
-    //     } else {
-    //       return const Center(
-    //         child: CircularProgressIndicator(),
-    //       );
-    //     }
-    //   },
-    // );
+    // if (_isWebln) {
+    //   return MainMenuScreen();
+    // }
+    // return NoWalletScreen();
+    return FutureBuilder(
+      future: _weblnMethods.checkWebln(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.data != null) {
+            return const MainMenuScreen();
+          } else {
+            return const NoWalletScreen();
+          }
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
   }
 }

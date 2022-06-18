@@ -36264,7 +36264,7 @@ while(true)switch(s){case 0:p=A.i1("https://legend.lnbits.com/api/v1/payments",0
 o=t.N
 n=A.a5(["Content-Type","application/json; charset=UTF-8","X-Api-Key","c0a6112944fd43eaa554c20f6760f4b4"],o,o)
 s=3
-return A.ab(A.aBV(p,B.ae.KW(A.a5(["out",!1,"amount",5,"memo","Bits and Sats","unit","sat"],o,t.K),null),n),$async$rA)
+return A.ab(A.aBV(p,B.ae.KW(A.a5(["out",!1,"amount",2,"memo","Bits and Sats","unit","sat"],o,t.K),null),n),$async$rA)
 case 3:m=b
 if(m.b===201){p=m.e
 o=A.aiG(A.aie(p).c.a.h(0,"charset"))
@@ -36641,13 +36641,11 @@ break
 case 5:case 1:return A.Z(q,r)}})
 return A.a_($async$oi,r)},
 ti(a,b,c){return this.a0f(a,b,c)},
-a0f(a,b,c){var s=0,r=A.a0(t.z),q
+a0f(a,b,c){var s=0,r=A.a0(t.z)
 var $async$ti=A.a1(function(d,e){if(d===1)return A.Y(e,r)
-while(true)switch(s){case 0:q=J
-s=2
-return A.ab(self.webln.sendPayment(c),$async$ti)
-case 2:q.aso(e,new A.a7R(a,b))
-return A.Z(null,r)}})
+while(true)switch(s){case 0:s=2
+return A.ab(J.aso(self.webln.sendPayment(c),new A.a7R(a,b)),$async$ti)
+case 2:return A.Z(null,r)}})
 return A.a_($async$ti,r)}}
 A.a7R.prototype={
 $1(a){var s,r,q=B.ae.pr(0,self.JSON.stringify(a),null)

@@ -129,7 +129,9 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       _weblnMethods.sendPaymentMethod(context,
           invoice: invoice, checkPaidInvoice: checkPaidInvoice);
       // _weblnMethods.sendPayment(context, invoice);
+
     }
+    setState(() {});
   }
 
   void checkPaidInvoice(String paymentHash) async {

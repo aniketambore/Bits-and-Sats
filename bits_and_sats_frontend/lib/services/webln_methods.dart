@@ -74,8 +74,7 @@ class WeblnMethods {
       required void Function(String paymentHash) checkPaidInvoice}) async {
     // await webln.enable();
     // var sendPaymentResult = await webln.sendPayment(invoice);
-    var sendPaymentResult = await sendPayment(invoice);
-    sendPaymentResult.then((value) {
+    await sendPayment(invoice).then((value) {
       final Map<String, dynamic> json = jsonDecode(stringify(value));
       print(
           "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
@@ -84,5 +83,14 @@ class WeblnMethods {
       weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
       checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
     });
+    // sendPaymentResult.then((value) {
+    //   final Map<String, dynamic> json = jsonDecode(stringify(value));
+    //   print(
+    //       "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
+    //   WeblnProvider weblnProvier =
+    //       Provider.of<WeblnProvider>(context, listen: false);
+    //   weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
+    //   checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+    // });
   }
 }

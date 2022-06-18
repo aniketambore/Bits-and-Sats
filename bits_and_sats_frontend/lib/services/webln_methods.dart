@@ -74,15 +74,24 @@ class WeblnMethods {
       required void Function(String paymentHash) checkPaidInvoice}) async {
     // await webln.enable();
     // var sendPaymentResult = await webln.sendPayment(invoice);
-    await sendPayment(invoice).then((value) {
-      final Map<String, dynamic> json = jsonDecode(stringify(value));
-      print(
-          "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
-      WeblnProvider weblnProvier =
-          Provider.of<WeblnProvider>(context, listen: false);
-      weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
-      checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
-    });
+    try {
+      var result = await sendPayment(invoice);
+      result.then((paymentResult) {
+        print("[+] Send payment result is ${stringify(paymentResult)}");
+      });
+    } catch (e) {
+      print("[!] Error in _sendPaymentMethod is $e");
+    }
+
+    // var sendPaymentResult = await sendPayment(invoice).then((value) {
+    //   final Map<String, dynamic> json = jsonDecode(stringify(value));
+    //   print(
+    //       "[+] _sendPayment | webln_methods.dart | sendPaymentResult is $json");
+    //   WeblnProvider weblnProvier =
+    //       Provider.of<WeblnProvider>(context, listen: false);
+    //   weblnProvier.updatePaymentResponseResult(PaymentResponse.fromMap(json));
+    //   checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
+    // });
     // sendPaymentResult.then((value) {
     //   final Map<String, dynamic> json = jsonDecode(stringify(value));
     //   print(

@@ -126,16 +126,16 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
 
   void sendPayment(String invoice) async {
     if (_nameController.text.isNotEmpty) {
-      // _weblnMethods.sendPaymentMethod(context,
-      //     invoice: invoice, checkPaidInvoice: checkPaidInvoice);
-      _weblnMethods.sendPayment(context, invoice);
+      _weblnMethods.sendPaymentMethod(context,
+          invoice: invoice, checkPaidInvoice: checkPaidInvoice);
+      // _weblnMethods.sendPayment(context, invoice);
     }
   }
 
-  void checkPaidInvoice(String paymentHash) {
+  void checkPaidInvoice(String paymentHash) async {
     // Future<Map<String, dynamic>> checkInvoice = _lnBitsApi.checkPaidInvoice(weblnProvier.paymentResponseResult.paymentHash!);
-    var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
-    checkInvoice.then((value) {
+    // var checkInvoice = _lnBitsApi.checkPaidInvoice(paymentHash);
+    await _lnBitsApi.checkPaidInvoice(paymentHash).then((value) {
       print(
           "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
       if (value["paid"] == true) {

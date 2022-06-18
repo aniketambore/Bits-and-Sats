@@ -1,35 +1,52 @@
-import 'package:flutter/material.dart';
-import 'dart:js' as js;
+// import 'package:bits_and_sats_frontend/models/payment_response.dart';
+// import 'package:flutter/material.dart';
+// import 'dart:js' as js;
 
-class PaymentResultScreen extends StatefulWidget {
-  const PaymentResultScreen({Key? key}) : super(key: key);
+// import '../services/webln_methods.dart';
 
-  @override
-  State<PaymentResultScreen> createState() => _PaymentResultScreenState();
-}
+// class PaymentResultScreen extends StatefulWidget {
+//   const PaymentResultScreen({Key? key}) : super(key: key);
 
-class _PaymentResultScreenState extends State<PaymentResultScreen> {
-  late var res;
+//   @override
+//   State<PaymentResultScreen> createState() => _PaymentResultScreenState();
+// }
 
-  @override
-  void initState() {
-    res = js.JsObject.fromBrowserObject(js.context['paymentState']);
-    super.initState();
-  }
+// class _PaymentResultScreenState extends State<PaymentResultScreen> {
+//   // late var res;
+//   final WeblnMethods _weblnMethods = WeblnMethods();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("Preimage is ${res["preimage"]}"),
-            Text("Payment Hash is ${res["paymentHash"]}"),
-          ],
-        )),
-      ),
-    );
-  }
-}
+//   // @override
+//   // void initState() {
+//   //   res = js.JsObject.fromBrowserObject(js.context['paymentState']);
+//   //   super.initState();
+//   // }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Container(
+//           child: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [displayingResponse()],
+//         ),
+//       )),
+//     );
+//   }
+
+//   displayingResponse() {
+//     return StreamBuilder<PaymentResponse>(
+//       stream: _weblnMethods.paymentResponseResult(),
+//       builder: (context, snapshot) {
+//         if (snapshot.connectionState == ConnectionState.done) {
+//           if (snapshot.data != null) {
+//             return Text("Snapshot data is ${snapshot.data!.paymentHash}");
+//           } else {
+//             return Text("Snapshot data is null maybe");
+//           }
+//         }
+//         return CircularProgressIndicator();
+//       },
+//     );
+//   }
+// }

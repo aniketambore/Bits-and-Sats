@@ -36283,7 +36283,7 @@ while(true)switch(s){case 0:p=A.i3("https://legend.lnbits.com/api/v1/payments",0
 o=t.N
 n=A.a4(["Content-Type","application/json; charset=UTF-8","X-Api-Key","c0a6112944fd43eaa554c20f6760f4b4"],o,o)
 s=3
-return A.ab(A.aC5(p,B.ab.AK(A.a4(["out",!1,"amount",3,"memo","Bits and Sats","unit","sat"],o,t.K),null),n),$async$rw)
+return A.ab(A.aC5(p,B.ab.AK(A.a4(["out",!1,"amount",10,"memo","Bits and Sats","unit","sat"],o,t.K),null),n),$async$rw)
 case 3:m=b
 if(m.b===201){p=m.e
 o=A.aiQ(A.aio(p).c.a.h(0,"charset"))

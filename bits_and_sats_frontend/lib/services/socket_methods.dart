@@ -114,7 +114,7 @@ class SocketMethods {
     _socketClient.on("endGame", (playerData) {
       // showGameDialog(context, "${playerData["nickname"]} won the game!", "endGame");
       if (playerData["socketID"] == _socketClient.id) {
-        pay(playerData["nickname"], "Congratulations on winning the game!");
+        pay(playerData["nickname"], "Congratulations on winning the game!", 10);
         showGameDialog(context, "You won the game!", "endGame");
       } else {
         showGameDialog(

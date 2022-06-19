@@ -11,11 +11,11 @@ async function sendPaymentFunction(invoice){
     }
 }
 
-async function pay(walletAddress, comment){
+async function pay(walletAddress, comment, tokens){
     const { invoice, params, successAction, validatePreimage } =
     await LnurlPay.requestInvoice({
       lnUrlOrAddress: walletAddress,
-      tokens: 20,
+      tokens: tokens,
       comment: comment,
     });
 

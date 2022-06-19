@@ -36638,7 +36638,7 @@ s.aj()}},
 $S:2}
 A.a5a.prototype={
 $1(a){var s="nickname",r=J.S(a),q=this.b
-if(J.e(r.h(a,"socketID"),this.a.a.ay)){self.pay(r.h(a,s),"Congratulations on winning the game!")
+if(J.e(r.h(a,"socketID"),this.a.a.ay)){self.pay(r.h(a,s),"Congratulations on winning the game!",10)
 A.QS(q,"You won the game!","endGame")}else A.QS(q,A.d(r.h(a,s))+" won the game!","endGame")},
 $S:2}
 A.Jr.prototype={

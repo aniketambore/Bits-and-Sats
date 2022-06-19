@@ -36639,7 +36639,7 @@ $S:2}
 A.a5a.prototype={
 $1(a){var s="nickname",r=J.S(a),q=this.b
 if(J.e(r.h(a,"socketID"),this.a.a.ay)){self.pay(r.h(a,s),"Congratulations on winning the game!",10)
-A.QS(q,"You won the game!","endGame")}else A.QS(q,A.d(r.h(a,s))+" won the game!","endGame")},
+A.QS(q,"Congratulations, you won the game! \n Your winning amount of sats will be transferred to you soon. \n Thanks for playing Bits and Sats.","endGame")}else A.QS(q,A.d(r.h(a,s))+" won the game! \n Which means you lost \u2639. \n Better luck next time.","endGame")},
 $S:2}
 A.Jr.prototype={
 tT(){var s=0,r=A.a0(t.a),q,p=this

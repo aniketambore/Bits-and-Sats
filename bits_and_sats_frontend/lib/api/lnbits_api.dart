@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import '../models/wallet.dart';
 
 class LNBitsApi {
-  final String _apiKey = "c0a6112944fd43eaa554c20f6760f4b4";
+  final String _apiKey = "";
 
   Future<Wallet> getWalletDetails() async {
     return _getWalletDetails();

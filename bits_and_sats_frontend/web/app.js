@@ -20,7 +20,7 @@ async function pay(walletAddress, comment, tokens){
     });
 
     let http = new XMLHttpRequest();
-    const _apiKey = "f6fcee3169a24ca19b277f0ce174607d";
+    const _apiKey = "";
     const url = "https://legend.lnbits.com/api/v1/payments";
     let data = {
         "out": true,

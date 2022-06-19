@@ -10,3 +10,29 @@ async function sendPaymentFunction(invoice){
         showError(e);
     }
 }
+
+async function pay(walletAddress, comment){
+    const { invoice, params, successAction, validatePreimage } =
+    await LnurlPay.requestInvoice({
+      lnUrlOrAddress: walletAddress,
+      tokens: 20,
+      comment: comment,
+    });
+
+    let http = new XMLHttpRequest();
+    const _apiKey = "f6fcee3169a24ca19b277f0ce174607d";
+    const url = "https://legend.lnbits.com/api/v1/payments";
+    let data = {
+        "out": true,
+        "bolt11": invoice
+    };
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    http.setRequestHeader("X-Api-Key", _apiKey);
+    http.onreadystatechange = function() {
+        if(http.readyState == 4 && http.status == 200) {
+            alert(http.responseText);
+        }
+    }
+    http.send(JSON.stringify(data));
+}

@@ -42,36 +42,3 @@ void showGameDialog(BuildContext context, String text, [String? methodName]) {
         );
       });
 }
-
-// void showGameDialogWinner(BuildContext context, String headlineText,
-//     String descText, String assetPath) {
-//   showDialog(
-//     context: context,
-//     builder: (_) => AssetGiffyDialog(
-//       image: Image.asset(
-//         assetPath,
-//         fit: BoxFit.cover,
-//       ),
-//       title: Text(
-//         headlineText,
-//         textAlign: TextAlign.center,
-//         style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600),
-//       ),
-//       entryAnimation: EntryAnimation.TOP_LEFT,
-//       description: Text(
-//         descText,
-//         textAlign: TextAlign.center,
-//         // style: TextStyle(),
-//       ),
-//       onlyOkButton: true,
-//       buttonOkColor: lighteningYellow,
-//       onOkButtonPressed: () {
-//         GameMethods().clearBoard(context);
-//         Navigator.pushAndRemoveUntil(
-//             context,
-//             MaterialPageRoute(builder: (context) => const LandingScreen()),
-//             (route) => false);
-//       },
-//     ),
-//   );
-// }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "package:socket_io_client/socket_io_client.dart";
@@ -115,10 +113,8 @@ class SocketMethods {
   void endGameListener(BuildContext context) {
     _socketClient.on("endGame", (playerData) {
       // showGameDialog(context, "${playerData["nickname"]} won the game!", "endGame");
-      final LnurlPay lnurlPay = LnurlPay();
-      lnurlPay.requestingInvoice(playerData["nickname"]);
-
       if (playerData["socketID"] == _socketClient.id) {
+        pay(playerData["nickname"], "Congratulations on winning the game!");
         showGameDialog(context, "You won the game!", "endGame");
       } else {
         showGameDialog(

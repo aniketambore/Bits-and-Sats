@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "package:socket_io_client/socket_io_client.dart";
 
+import 'lnurl_pay_methods.dart';
 import "socket_client.dart";
 import "../screens/game_screen.dart";
 import "../provider/room_data_provider.dart";
@@ -112,22 +115,14 @@ class SocketMethods {
   void endGameListener(BuildContext context) {
     _socketClient.on("endGame", (playerData) {
       // showGameDialog(context, "${playerData["nickname"]} won the game!", "endGame");
+      final LnurlPay lnurlPay = LnurlPay();
+      lnurlPay.requestingInvoice(playerData["nickname"]);
 
       if (playerData["socketID"] == _socketClient.id) {
         showGameDialog(context, "You won the game!", "endGame");
-        // showGameDialogWinner(
-        //     context,
-        //     "You won the game !",
-        //     "Your winning amount of sats will be transferred to you soon.",
-        //     "assets/images/winning.gif");
       } else {
         showGameDialog(
             context, "${playerData["nickname"]} won the game!", "endGame");
-        // showGameDialogWinner(
-        //     context,
-        //     "You lost the game bro !",
-        //     "Play hard and earn sats, next time 🙃",
-        //     "assets/images/lossing.gif");
       }
 
       // Navigator.popUntil(context, (route) => false);

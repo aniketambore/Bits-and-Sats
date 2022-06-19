@@ -115,10 +115,15 @@ class SocketMethods {
       // showGameDialog(context, "${playerData["nickname"]} won the game!", "endGame");
       if (playerData["socketID"] == _socketClient.id) {
         pay(playerData["nickname"], "Congratulations on winning the game!", 10);
-        showGameDialog(context, "You won the game!", "endGame");
+        showGameDialog(
+            context,
+            "Congratulations, you won the game! \n Your winning amount of sats will be transferred to you soon. \n Thanks for playing Bits and Sats.",
+            "endGame");
       } else {
         showGameDialog(
-            context, "${playerData["nickname"]} won the game!", "endGame");
+            context,
+            "${playerData["nickname"]} won the game! \n Which means you lost ☹. \n Better luck next time.",
+            "endGame");
       }
 
       // Navigator.popUntil(context, (route) => false);

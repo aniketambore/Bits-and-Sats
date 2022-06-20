@@ -52,8 +52,7 @@ class LNBitsApi {
 
     if (response.statusCode == 201) {
       // If the server did return a 201 CREATED response, then parse the JSON.
-      print(
-          "[+] _createInvoice | lnbits_api.dart | invoice result is ${response.body}");
+      // print("[+] _createInvoice | lnbits_api.dart | invoice result is ${response.body}");
       return CreateInvoice.fromMap(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response, then throw an exception.

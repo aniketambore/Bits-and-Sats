@@ -136,8 +136,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     var checkInvoice =
         _lnBitsApi.checkPaidInvoice(paymentResult["paymentHash"]);
     checkInvoice.then((value) {
-      print(
-          "[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
+      // print("[+] _sendPayment | webln_methods.dart | checkInvoiceResult is $value");
       if (value["paid"] == true) {
         setState(() {
           invoicePaid = true;

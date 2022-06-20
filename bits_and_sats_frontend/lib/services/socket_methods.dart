@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "package:socket_io_client/socket_io_client.dart";
 
-import 'lnurl_pay_methods.dart';
 import "socket_client.dart";
 import "../screens/game_screen.dart";
 import "../provider/room_data_provider.dart";
@@ -19,7 +18,7 @@ class SocketMethods {
     if (nickname.isNotEmpty) {
       _socketClient.emit("createRoom", {"nickname": nickname});
     } else {
-      print("[+] Nickname cannot be empty bro :(");
+      // print("[+] Nickname cannot be empty bro :(");
     }
   }
 
@@ -112,9 +111,7 @@ class SocketMethods {
 
   void endGameListener(BuildContext context) {
     _socketClient.on("endGame", (playerData) {
-      // showGameDialog(context, "${playerData["nickname"]} won the game!", "endGame");
       if (playerData["socketID"] == _socketClient.id) {
-        pay(playerData["nickname"], "Congratulations on winning the game!", 10);
         showGameDialog(
             context,
             "Congratulations, you won the game! \n Your winning amount of sats will be transferred to you soon. \n Thanks for playing Bits and Sats.",
